@@ -1,7 +1,7 @@
 import { makeObservable } from 'mobx';
-import { http } from '../utils';
+import { http, setToken, getToken } from '../utils';
 export default class LoginState {
-  private token: string = ''
+  private token: string = getToken() || ''
   constructor() {
     makeObservable(this);
   }
@@ -12,6 +12,9 @@ export default class LoginState {
 
     // 存入 token
     this.token = res.data.token
+
+    // 存入 ls
+    setToken(this.token)
   }
 }
 
