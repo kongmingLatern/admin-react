@@ -1,7 +1,7 @@
 import { UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons'
 import { Layout, Menu } from 'antd'
 import React from 'react'
-import { useNavigate, useRoutes, Outlet } from 'react-router-dom'
+import { useNavigate, Outlet } from 'react-router-dom'
 
 export default function UI() {
   const { Header, Content, Footer, Sider } = Layout
@@ -13,9 +13,7 @@ export default function UI() {
       <Sider
         breakpoint="lg"
         collapsedWidth="0"
-        onBreakpoint={broken => {
-          console.log(broken)
-        }}
+        onBreakpoint={broken => {}}
         onCollapse={(collapsed, type) => {
           console.log(collapsed, type)
         }}
