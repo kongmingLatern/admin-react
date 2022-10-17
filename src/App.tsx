@@ -1,9 +1,18 @@
-import React from 'react';
+import React from 'react'
+import Layout from './component/Layout'
+import { Routes, Route, Link } from 'react-router-dom'
+import User from './pages/User'
 
-function App() {
+export default function App() {
   return (
-    <h1>Hello World</h1>
+    <>
+      <header className="font-semibold  bg-red-300 ">
+        <h1 className="text-zinc-100 text-lg  p-5">后台管理系统</h1>
+      </header>
+      <Routes>
+        <Route path="/" element={<Layout />}></Route>
+        <Route path="/user" element={<User />}></Route>
+      </Routes>
+    </>
   )
 }
-
-export default App
