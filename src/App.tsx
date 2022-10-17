@@ -1,6 +1,7 @@
 import React from 'react'
-import Layout from './component/Layout'
-import { Routes, Route, Link } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
+import UI from './component/UI'
+import Goods from './pages/Goods'
 import User from './pages/User'
 
 export default function App() {
@@ -10,8 +11,10 @@ export default function App() {
         <h1 className="text-zinc-100 text-lg  p-5">后台管理系统</h1>
       </header>
       <Routes>
-        <Route path="/" element={<Layout />}></Route>
-        <Route path="/user" element={<User />}></Route>
+        <Route path="/" element={<UI />}>
+          <Route path="user" element={<User />}></Route>
+          <Route path="goods" element={<Goods />}></Route>
+        </Route>
       </Routes>
     </>
   )
