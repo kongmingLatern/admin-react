@@ -1,6 +1,5 @@
-import React from 'react'
 import { Routes, Route } from 'react-router-dom'
-import UI from './component/UI'
+import UI from './components/UI'
 import Goods from './pages/Goods'
 import User from './pages/User'
 

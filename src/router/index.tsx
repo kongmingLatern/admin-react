@@ -1,4 +1,4 @@
-import UI from '../component/UI'
+import UI from '../components/UI'
 import User from '../pages/User'
 const routeConfig = [
   {
