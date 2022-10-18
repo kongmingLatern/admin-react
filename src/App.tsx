@@ -2,17 +2,18 @@ import { Routes, Route } from 'react-router-dom'
 import UI from './components/UI'
 import Goods from './pages/Goods'
 import User from './pages/User'
+import Files from './pages/Files'
+import Header from './components/Header'
 
 export default function App() {
   return (
     <>
-      <header className="font-semibold  bg-red-300 ">
-        <h1 className="text-zinc-100 text-lg  p-5">后台管理系统</h1>
-      </header>
+      <Header />
       <Routes>
         <Route path="/" element={<UI />}>
           <Route path="user" element={<User />}></Route>
           <Route path="goods" element={<Goods />}></Route>
+          <Route path="files" element={<Files />}></Route>
         </Route>
       </Routes>
     </>
