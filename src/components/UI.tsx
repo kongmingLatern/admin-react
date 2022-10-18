@@ -1,12 +1,9 @@
 import { UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons'
 import { Layout, Menu } from 'antd'
-import React from 'react'
-import { useNavigate, Outlet, Link } from 'react-router-dom'
+import { Outlet, Link } from 'react-router-dom'
 
 export default function UI() {
   const { Header, Content, Footer, Sider } = Layout
-  const navigate = useNavigate()
-  const navTab = ['用户管理', '资料管理', '订单管理', '商品管理']
 
   return (
     <Layout>
