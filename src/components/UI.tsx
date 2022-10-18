@@ -1,7 +1,7 @@
 import { UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons'
 import { Layout, Menu } from 'antd'
 import React from 'react'
-import { useNavigate, Outlet } from 'react-router-dom'
+import { useNavigate, Outlet, Link } from 'react-router-dom'
 
 export default function UI() {
   const { Header, Content, Footer, Sider } = Layout
@@ -19,30 +19,17 @@ export default function UI() {
         }}
       >
         <div className="logo" />
-        <Menu
-          theme="dark"
-          mode="inline"
-          defaultSelectedKeys={['4']}
-          onClick={e => {
-            switch (e.key) {
-              case '1': {
-                navigate('/user')
-                break
-              }
-              case '2': {
-                navigate('/goods')
-                break
-              }
-            }
-          }}
-          items={[UserOutlined, VideoCameraOutlined, UploadOutlined, UserOutlined].map(
-            (icon, index) => ({
-              key: String(index + 1),
-              icon: React.createElement(icon),
-              label: navTab[`${index}`],
-            })
-          )}
-        />
+        <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
+          <Menu.Item key="1" icon={<UserOutlined />}>
+            <Link to="/user">用户管理</Link>
+          </Menu.Item>
+          <Menu.Item key="2" icon={<UploadOutlined />}>
+            <Link to="/files">文件上传</Link>
+          </Menu.Item>
+          <Menu.Item key="3" icon={<VideoCameraOutlined />}>
+            <Link to="/goods">商品管理</Link>
+          </Menu.Item>
+        </Menu>
       </Sider>
       <Layout>
         <Header className="site-layout-sub-header-background" style={{ padding: 0 }} />
