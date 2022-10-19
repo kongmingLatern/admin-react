@@ -2,7 +2,7 @@ import axios from 'axios'
 import { getToken } from './token'
 
 const http = axios.create({
-  // baseURL: '',
+  // baseURL: '/api',
   timeout: 5000
 })
 
