@@ -1,6 +1,5 @@
 import { UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons'
 import { Layout, Menu, MenuProps } from 'antd'
-import MenuItem from 'antd/lib/menu/MenuItem'
 import { Outlet, Link } from 'react-router-dom'
 import Header from './Header'
 
@@ -23,9 +22,9 @@ export default function UI() {
       type,
     } as MenuItem
   }
-  const User = <Link to="/user">用户管理</Link>
-  const Goods = <Link to="/goods">商品管理</Link>
-  const Order = <Link to="/order">订单管理</Link>
+  const User = <Link to="/admin/user">用户管理</Link>
+  const Goods = <Link to="/admin/goods">商品管理</Link>
+  const Order = <Link to="/admin/order">订单管理</Link>
   const items: MenuItem[] = [
     getItem(User, '1', <UserOutlined />),
     getItem(Goods, '2', <UploadOutlined />),
@@ -33,7 +32,7 @@ export default function UI() {
   ]
   return (
     <>
-      <Header />
+      <Header title="后台管理系统" exit="退出登录" />
       <Layout>
         <Sider breakpoint="lg" collapsedWidth="0">
           <div className="logo" />
