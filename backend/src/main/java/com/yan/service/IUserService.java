@@ -6,4 +6,14 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
 public interface IUserService extends IService<User> {
+    /**
+     * 登录
+     * @param user
+     * @return
+     */
+    User login(User user);
+    /**
+     * 注册
+     */
+    boolean register(User user);
 }

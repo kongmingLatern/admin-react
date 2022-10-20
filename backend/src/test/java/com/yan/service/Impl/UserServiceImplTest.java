@@ -14,10 +14,6 @@ class UserServiceImplTest {
     IUserService userService;
     @Test
     public void addTest(){
-        User user = new User();
-        user.setUsername("123");
-        user.setPassword("123");
-        user.setRealName("123");
-        userService.save(user);
+
     }
 }
