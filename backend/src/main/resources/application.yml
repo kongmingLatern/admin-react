@@ -1,0 +1,16 @@
+# 数据库驱动：
+spring:
+  datasource:
+    username: root
+    password: 98735521
+    url: jdbc:mysql://localhost:3306/shopping?serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jackson:
+    date-format: yyyy年MM月dd日 HH时mm分ss秒
+logging:
+  level:
+    com:
+      yan:
+        mapper: debug
+
+
