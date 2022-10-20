@@ -1,35 +1,40 @@
 import { UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons'
-import { Layout, Menu } from 'antd'
+import { Layout, Menu, MenuProps } from 'antd'
 import MenuItem from 'antd/lib/menu/MenuItem'
 import { Outlet, Link } from 'react-router-dom'
 
 export default function UI() {
   const { Content, Footer, Sider } = Layout
+  type MenuItem = Required<MenuProps>['items'][number]
+
+  function getItem(
+    label: React.ReactNode,
+    key: React.Key,
+    icon?: React.ReactNode,
+    children?: MenuItem[],
+    type?: 'group'
+  ): MenuItem {
+    return {
+      key,
+      icon,
+      children,
+      label,
+      type,
+    } as MenuItem
+  }
+  const User = <Link to="/user">用户管理</Link>
+  const Goods = <Link to="/goods">商品管理</Link>
+  const Order = <Link to="/order">订单管理</Link>
   const items: MenuItem[] = [
-    getItem('用户管理', '1', <UserOutlined />),
-    getItem('商品管理', '2', <UploadOutlined />),
-    getItem('订单管理', '3', <VideoCameraOutlined />),
+    getItem(User, '1', <UserOutlined />),
+    getItem(Goods, '2', <UploadOutlined />),
+    getItem(Order, '3', <VideoCameraOutlined />),
   ]
   return (
     <Layout>
       <Sider breakpoint="lg" collapsedWidth="0">
         <div className="logo" />
-        <Menu
-          theme="dark"
-          mode="inline"
-          defaultSelectedKeys={['1']}
-          items={items}
-        >
-          {/* <Menu.Item key="1" icon={<UserOutlined />}>
-            <Link to="/user">用户管理</Link>
-          </Menu.Item>
-          <Menu.Item key="2" icon={<UploadOutlined />}>
-            <Link to="/goods">商品管理</Link>
-          </Menu.Item>
-          <Menu.Item key="3" icon={<VideoCameraOutlined />}>
-            <Link to="/order">订单管理</Link>
-          </Menu.Item> */}
-        </Menu>
+        <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']} items={items} />
       </Sider>
       <Layout>
         <Content>
@@ -37,11 +42,8 @@ export default function UI() {
             <Outlet />
           </div>
         </Content>
-        <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
+        <Footer style={{ textAlign: 'center' }}>&copy; 0922202 网上购物后台</Footer>
       </Layout>
     </Layout>
   )
-}
-function getItem(arg0: string, arg1: string, arg2: JSX.Element): MenuItem {
-  throw new Error('Function not implemented.')
 }
