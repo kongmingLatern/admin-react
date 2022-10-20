@@ -92,7 +92,7 @@ const CardList: GoodsType[] = [
 
 const list = CardList.map(item => (
   <Card.Grid style={gridStyle} hoverable key={item.gid}>
-    <Card cover={<img alt="example" src={item.imgs[0]} />} style={{ width: 300 }}>
+    <Card cover={<img alt="example" src={item.imgs[0]} />} style={{ width: 300 }} bordered={false}>
       <Card.Meta
         title={<CardHeader name={item.gname} price={item.price} />}
         description={item.desc}
