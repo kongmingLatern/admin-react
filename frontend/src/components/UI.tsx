@@ -32,7 +32,7 @@ export default function UI() {
   ]
   return (
     <>
-      <Header title="后台管理系统" exit="退出登录" />
+      <Header title="后台管理系统" text="退出登录" />
       <Layout>
         <Sider breakpoint="lg" collapsedWidth="0">
           <div className="logo" />
