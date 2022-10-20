@@ -8,12 +8,16 @@ import User from './views/back/User'
 export default function App() {
   return (
     <>
-      <Header />
       <Routes>
-        <Route path="/" element={<UI />}>
+        <Route path="/admin" element={<UI />}>
           <Route path="user" element={<User />}></Route>
           <Route path="goods" element={<Goods />}></Route>
           <Route path="order" element={<Order />}></Route>
+        </Route>
+
+        <Route path="/">
+          <Route path="/" element={<div>index</div>}></Route>
+          <Route path="*" element={<div>404</div>}></Route>
         </Route>
       </Routes>
     </>

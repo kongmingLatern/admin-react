@@ -2,6 +2,7 @@ import { UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/i
 import { Layout, Menu, MenuProps } from 'antd'
 import MenuItem from 'antd/lib/menu/MenuItem'
 import { Outlet, Link } from 'react-router-dom'
+import Header from './Header'
 
 export default function UI() {
   const { Content, Footer, Sider } = Layout
@@ -31,19 +32,22 @@ export default function UI() {
     getItem(Order, '3', <VideoCameraOutlined />),
   ]
   return (
-    <Layout>
-      <Sider breakpoint="lg" collapsedWidth="0">
-        <div className="logo" />
-        <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']} items={items} />
-      </Sider>
+    <>
+      <Header />
       <Layout>
-        <Content>
-          <div className="site-layout-background" style={{ padding: 24, minHeight: 350 }}>
-            <Outlet />
-          </div>
-        </Content>
-        <Footer style={{ textAlign: 'center' }}>&copy; 0922202 网上购物后台</Footer>
+        <Sider breakpoint="lg" collapsedWidth="0">
+          <div className="logo" />
+          <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']} items={items} />
+        </Sider>
+        <Layout>
+          <Content>
+            <div className="site-layout-background" style={{ padding: 24, minHeight: 350 }}>
+              <Outlet />
+            </div>
+          </Content>
+          <Footer style={{ textAlign: 'center' }}>&copy; 0922202 网上购物后台</Footer>
+        </Layout>
       </Layout>
-    </Layout>
+    </>
   )
 }
