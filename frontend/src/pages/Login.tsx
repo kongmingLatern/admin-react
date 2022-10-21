@@ -7,7 +7,7 @@ export default function Login() {
   return (
     <>
       {/* 头部 */}
-      <Header title="登录" text="去注册" click={() => navigate('/regist')} />
+      <Header title="登录" text="去注册" click={() => navigate('/register')} />
 
       {/* 登录框 */}
       <LoginBox />

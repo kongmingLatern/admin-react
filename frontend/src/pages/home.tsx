@@ -11,7 +11,7 @@ export default function Index() {
       {/* 头部 */}
       <Header
         title="一枝花"
-        text="登录"
+        text="退出登录"
         click={() => {
           navigate('/login')
         }}
