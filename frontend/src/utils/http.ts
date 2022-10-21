@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { Status } from './Status'
-import { getUid } from './token'
+import { getUid } from './uid'
 
 const http = axios.create({
   baseURL: 'http://localhost:8080',

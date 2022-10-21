@@ -11,6 +11,7 @@ export default class LoginState {
     const res = await http.get('/users/login', {
       params: { username, password }
     })
+    console.log(res);
 
     // 存入 token
     this.uid = res.data
