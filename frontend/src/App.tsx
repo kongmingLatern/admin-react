@@ -4,9 +4,10 @@ import UI from './components/UI'
 import Index from './pages/home'
 import Login from './pages/Login'
 import Register from './pages/Register'
-import Goods from './views/back/Goods'
+import GoodsInfo from './views/back/GoodsInfo'
 import Order from './views/back/Order'
 import User from './views/back/User'
+import Goods from './pages/Goods'
 function Redirect({ to }) {
   let navigate = useNavigate()
   useEffect(() => {
@@ -26,6 +27,7 @@ export default function App() {
 
         <Route path="/home">
           <Route path="/home" element={<Index />}></Route>
+          <Route path="goods" element={<Goods />}></Route>
         </Route>
 
         {/* 后台管理 */}
