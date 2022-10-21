@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import './css/index.css'
 import CardHeader from '../../components/index/CardHeader'
 import { GoodsType } from '../../type'
+import { Link } from 'react-router-dom'
 
 const gridStyle: React.CSSProperties = {
   width: '25%',
@@ -92,12 +93,18 @@ const CardList: GoodsType[] = [
 
 const list = CardList.map(item => (
   <Card.Grid style={gridStyle} hoverable key={item.gid}>
-    <Card cover={<img alt="example" src={item.imgs[0]} />} style={{ width: 300 }} bordered={false}>
-      <Card.Meta
-        title={<CardHeader name={item.gname} price={item.price} />}
-        description={item.desc}
-      />
-    </Card>
+    <Link to="/home/goods">
+      <Card
+        cover={<img alt="example" src={item.imgs[0]} />}
+        style={{ width: 300 }}
+        bordered={false}
+      >
+        <Card.Meta
+          title={<CardHeader name={item.gname} price={item.price} />}
+          description={item.desc}
+        />
+      </Card>
+    </Link>
   </Card.Grid>
 ))
 
