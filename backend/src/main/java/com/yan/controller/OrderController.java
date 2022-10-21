@@ -33,15 +33,25 @@ public class OrderController {
         List<Map<String, Object>> maps = orderService.listMaps();
         for (Map map : maps) {
             String uid = (String) map.get("uid");
-            LambdaQueryWrapper<User> queryUserWrapper = new LambdaQueryWrapper();
-            queryUserWrapper.eq(User::getUid, uid);
-            Map<String, Object> user = userService.getMap(queryUserWrapper);
-            map.putAll(user);
+            if (uid != null) {
+                LambdaQueryWrapper<User> queryUserWrapper = new LambdaQueryWrapper();
+                queryUserWrapper.eq(User::getUid, uid);
+                Map<String, Object> user = userService.getMap(queryUserWrapper);
+                if (user != null) {
+                    map.putAll(user);
+                }
+            }
+
             String gid = (String) map.get("gid");
-            LambdaQueryWrapper<Good> queryGoodWrapper = new LambdaQueryWrapper();
-            queryGoodWrapper.eq(Good::getGid, gid);
-            Map<String, Object> good = goodService.getMap(queryGoodWrapper);
-            map.putAll(good);
+            if (gid != null) {
+                LambdaQueryWrapper<Good> queryGoodWrapper = new LambdaQueryWrapper();
+                queryGoodWrapper.eq(Good::getGid, gid);
+                Map<String, Object> good = goodService.getMap(queryGoodWrapper);
+                if (good != null) {
+                    map.putAll(good);
+                }
+            }
+
         }
         return new Result(maps == null ? Code.GET_ERR : Code.GET_OK, maps, maps == null ? "查询失败" : "查询成功");
     }
@@ -64,7 +74,7 @@ public class OrderController {
     }
 
     @PutMapping
-    public Result update(Order order) {
+    public Result update(@RequestBody Order order) {
         boolean flag = orderService.updateById(order);
         return new Result(flag ? Code.UPDATE_OK : Code.UPDATE_ERR, null, flag ? "修改成功" : "修改失败");
     }
@@ -75,15 +85,23 @@ public class OrderController {
         queryOrderWrapper.eq(Order::getOid, oid);
         Map<String, Object> map = orderService.getMap(queryOrderWrapper);
         String uid = (String) map.get("uid");
-        LambdaQueryWrapper<User> queryUserWrapper = new LambdaQueryWrapper();
-        queryUserWrapper.eq(User::getUid, uid);
-        Map<String, Object> user = userService.getMap(queryUserWrapper);
-        map.putAll(user);
+        if (uid != null) {
+            LambdaQueryWrapper<User> queryUserWrapper = new LambdaQueryWrapper();
+            queryUserWrapper.eq(User::getUid, uid);
+            Map<String, Object> user = userService.getMap(queryUserWrapper);
+            if (user != null) {
+                map.putAll(user);
+            }
+        }
         String gid = (String) map.get("gid");
-        LambdaQueryWrapper<Good> queryGoodWrapper = new LambdaQueryWrapper();
-        queryGoodWrapper.eq(Good::getGid, gid);
-        Map<String, Object> good = goodService.getMap(queryGoodWrapper);
-        map.putAll(good);
+        if (gid != null) {
+            LambdaQueryWrapper<Good> queryGoodWrapper = new LambdaQueryWrapper();
+            queryGoodWrapper.eq(Good::getGid, gid);
+            Map<String, Object> good = goodService.getMap(queryGoodWrapper);
+            if (good != null) {
+                map.putAll(good);
+            }
+        }
         return new Result(map == null ? Code.GET_ERR : Code.GET_OK, map, map == null ? "查询失败" : "查询成功");
     }
 }

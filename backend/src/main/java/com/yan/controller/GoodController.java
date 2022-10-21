@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 import java.util.Map;
 
 
@@ -23,8 +24,8 @@ public class GoodController {
     IGoodService goodService;
     @GetMapping
     public Result getAll() {
-        Map<String, Object> map = goodService.getMap(null);
-        return new Result(map == null ? Code.GET_ERR : Code.GET_OK, map, map == null ? "查询失败" : "查询成功");
+        List<Good> list = goodService.list();
+        return new Result(list == null ? Code.GET_ERR : Code.GET_OK, list, list == null ? "查询失败" : "查询成功");
     }
     @PostMapping("/upload")
     public Result upload(@RequestPart(value="file") MultipartFile uploadFile) {

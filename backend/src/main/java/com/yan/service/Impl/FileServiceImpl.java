@@ -3,6 +3,7 @@ package com.yan.service.Impl;
 import com.yan.controller.Code;
 import com.yan.exception.BusinessException;
 import com.yan.service.IFileService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -11,7 +12,8 @@ import java.io.IOException;
 import java.util.UUID;
 @Service
 public class FileServiceImpl implements IFileService {
-    private String uploadPath=System.getProperty("user.dir")+"\\src\\main\\resources\\static\\imgs";
+    @Value("${upload}")
+    private String uploadPath;
     @Override
     public String load(MultipartFile uploadFile) {
         try {
