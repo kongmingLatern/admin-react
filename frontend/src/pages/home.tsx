@@ -15,6 +15,7 @@ export default function Index() {
         isLogin={true}
         click={() => {
           navigate('/login')
+          localStorage.clear()
         }}
       />
       {/* 轮播图 */}

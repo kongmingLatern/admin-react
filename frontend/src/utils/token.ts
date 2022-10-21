@@ -1,13 +1,13 @@
-const key = 'pc-key'
+const uid = 'uid'
 
-const getToken = (): string | null => localStorage.getItem(key)
+const getUid = (): string | null => localStorage.getItem(uid)
 
-const setToken = (token: string): void => localStorage.setItem(key, token)
+const setUid = (token: string): void => localStorage.setItem(uid, token)
 
-const removeToken = (): void => localStorage.removeItem(key)
+const removeUid = (): void => localStorage.removeItem(uid)
 
 export {
-  getToken,
-  setToken,
-  removeToken
+  getUid,
+  setUid,
+  removeUid
 }

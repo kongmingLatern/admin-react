@@ -1,17 +1,27 @@
-import { Button, Checkbox, Form, Input, Space } from 'antd'
+import { Button, Checkbox, Form, Input, message, Space } from 'antd'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useStore } from '../../store'
 import './css/button.css'
 
 const App: React.FC = () => {
   const navigate = useNavigate()
-  const onFinish = (values: any) => {
-    console.log('Success:', values)
-    navigate('/home')
+  const { loginState } = useStore()
+
+  const onFinish = async (values: any) => {
+    try {
+      await loginState.login(values)
+      message.success('登录成功，2秒后自动跳转至主页')
+      setTimeout(() => {
+        navigate('/home')
+      }, 2000)
+    } catch (err: any) {
+      message.error(err.msg)
+    }
   }
 
   const onFinishFailed = (errorInfo: any) => {
-    console.log('Failed:', errorInfo)
+    message.error('登录失败，请正确填写用户名和密码')
   }
 
   return (

@@ -1,20 +1,23 @@
-import { makeObservable } from 'mobx';
-import { http, setToken, getToken } from '../utils';
+import { makeAutoObservable } from 'mobx';
+import { http, setUid, getUid } from '../utils';
 export default class LoginState {
-  private token: string = getToken() || ''
+  private uid: string = getUid() || ''
   constructor() {
-    makeObservable(this);
+    makeAutoObservable(this);
   }
 
-  getToken = async (username: string, password: string) => {
+  login = async ({ username, password }) => {
     // 调用登录接口
-    const res = await http.post('/login', { username, password })
+    const res = await http.get('/users/login', {
+      params: { username, password }
+    })
 
     // 存入 token
-    this.token = res.data.token
+    this.uid = res.data
+
 
     // 存入 ls
-    setToken(this.token)
+    setUid(this.uid)
   }
 }
 

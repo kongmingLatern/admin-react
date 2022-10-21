@@ -1,16 +1,17 @@
 import axios from 'axios'
-import { getToken } from './token'
+import { Status } from './Status'
+import { getUid } from './token'
 
 const http = axios.create({
-  // baseURL: '/api',
+  baseURL: 'http://localhost:8080',
   timeout: 5000
 })
 
 
 http.interceptors.request.use((config) => {
-  const token = getToken()
-  if (token) {
-    config.headers!.Authorization = `Bearer ${token}`
+  const uid = getUid()
+  if (uid) {
+    config.headers!.Authorization = `Bearer ${uid}`
   }
   return config
 }, (error) => {
@@ -19,8 +20,15 @@ http.interceptors.request.use((config) => {
 
 
 http.interceptors.response.use((response) => {
-  return response
+  const { code } = response.data
+  if (!isSuccess(code)) {
+    return Promise.reject(response.data)
+  }
+
+  return response.data
 }, (error) => {
+  console.log('error');
+
   // 超出 2xx 范围的状态码都会触发该函数
   // 401 未授权
   if (error.response!.status === 401) {
@@ -29,6 +37,10 @@ http.interceptors.response.use((response) => {
   }
   return Promise.reject(error)
 })
+
+function isSuccess(code) {
+  return code === Status.SAVE_OK || code === Status.DELETE_OK || code === Status.UPDATE_OK || code === Status.GET_OK || code === Status.LOGIN_OK || code === Status.IS_AUTH
+}
 
 export {
   http

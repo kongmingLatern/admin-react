@@ -1,9 +1,9 @@
-import { getToken } from '../utils'
+import { getUid } from '../utils'
 import { Navigate } from 'react-router-dom'
 
 export default function AuthComponent({ children }): JSX.Element {
-  const isToken = getToken()
-  if (isToken) {
+  const isUid = getUid()
+  if (isUid) {
     // 正常渲染
     return <>{children}</>
   } else {

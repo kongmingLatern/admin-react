@@ -2,7 +2,7 @@ import React from "react";
 import LoginState from "./login.store";
 
 class RootState {
-  private loginState: LoginState
+  public loginState: LoginState
   constructor() {
     this.loginState = new LoginState()
   }
@@ -15,5 +15,8 @@ const rootState = new RootState()
 const context = React.createContext(rootState)
 
 // 导出上下文
-export default () => React.useContext(context)
+const useStore = () => React.useContext(context)
+export {
+  useStore
+}
 
