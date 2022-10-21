@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
 import { Status } from './Status'
 import { getUid } from './uid'
 
@@ -8,7 +8,7 @@ const http = axios.create({
 })
 
 
-http.interceptors.request.use((config) => {
+http.interceptors.request.use((config: AxiosRequestConfig) => {
   const uid = getUid()
   if (uid) {
     config.headers!.Authorization = `Bearer ${uid}`
@@ -19,16 +19,23 @@ http.interceptors.request.use((config) => {
 })
 
 
-http.interceptors.response.use((response) => {
+http.interceptors.response.use((response: AxiosResponse) => {
   const { code } = response.data
   if (!isSuccess(code)) {
     return Promise.reject(response.data)
+  } else if (code === Status.IS_AUTH) {
+    response.data = {
+      ...response.data,
+      isAuth: 1
+    }
   }
+  console.log(response.data);
+
 
   return response.data
 }, (error) => {
-  console.log('error');
 
+  console.log('error');
   // 超出 2xx 范围的状态码都会触发该函数
   // 401 未授权
   if (error.response!.status === 401) {

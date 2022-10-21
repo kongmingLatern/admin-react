@@ -9,6 +9,7 @@ import Order from './views/back/Order'
 import User from './views/back/User'
 import Goods from './pages/Goods'
 import Personal from './pages/Personal'
+import AuthComponent from './components/AuthComponent'
 function Redirect({ to }) {
   let navigate = useNavigate()
   useEffect(() => {
@@ -29,22 +30,71 @@ export default function App() {
 
         {/* 主页 */}
         <Route path="/home">
-          <Route path="/home" element={<Index />}></Route>
+          <Route
+            path="/home"
+            element={
+              <AuthComponent>
+                <Index />
+              </AuthComponent>
+            }
+          ></Route>
           {/* 商品页面 */}
-          <Route path="goods" element={<Goods />}></Route>
+          <Route
+            path="goods"
+            element={
+              <AuthComponent>
+                <Goods />
+              </AuthComponent>
+            }
+          ></Route>
         </Route>
 
         {/* 个人中心 */}
-        <Route path="/personal" element={<Personal />}></Route>
+        <Route
+          path="/personal"
+          element={
+            <AuthComponent>
+              <Personal />
+            </AuthComponent>
+          }
+        ></Route>
 
         {/* 后台管理 */}
-        <Route path="/admin" element={<UI />}>
+        <Route
+          path="/admin"
+          element={
+            <AuthComponent>
+              <UI />
+            </AuthComponent>
+          }
+        >
           {/* 用户管理 */}
-          <Route path="user" element={<User />}></Route>
+          <Route
+            path="user"
+            element={
+              <AuthComponent>
+                <User />
+              </AuthComponent>
+            }
+          ></Route>
           {/* 商品管理 */}
-          <Route path="goods" element={<GoodsInfo />}></Route>
+          <Route
+            path="goods"
+            element={
+              <AuthComponent>
+                <GoodsInfo />
+              </AuthComponent>
+            }
+          ></Route>
           {/* 订单管理 */}
-          <Route path="order" element={<Order />}></Route>
+          <Route
+            path="order"
+            element={
+              <AuthComponent>
+                <Order />
+              </AuthComponent>
+            }
+          ></Route>
         </Route>
 
         {/* 匹配404 */}
