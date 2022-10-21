@@ -1,10 +1,13 @@
 import { Button, Checkbox, Form, Input, Space } from 'antd'
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import './css/button.css'
 
 const App: React.FC = () => {
+  const navigate = useNavigate()
   const onFinish = (values: any) => {
     console.log('Success:', values)
+    navigate('/home')
   }
 
   const onFinishFailed = (errorInfo: any) => {
@@ -48,7 +51,7 @@ const App: React.FC = () => {
               <Button type="primary" htmlType="submit" className="bg-[#1890ff]">
                 登录
               </Button>
-              <Button type="primary" htmlType="submit" className="bg-[#1890ff]">
+              <Button type="primary" className="bg-[#1890ff]" onClick={() => navigate('/register')}>
                 注册
               </Button>
             </Space>
