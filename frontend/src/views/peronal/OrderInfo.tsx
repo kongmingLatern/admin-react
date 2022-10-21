@@ -1,5 +1,6 @@
-import { Avatar, List } from 'antd'
+import { Avatar, Button, List, Space } from 'antd'
 import React from 'react'
+import OrderDesc from './OrderDesc'
 import './css/index.css'
 
 const data = Array.from({ length: 23 }).map((_, i) => ({
@@ -28,11 +29,17 @@ const App: React.FC = () => (
       <List.Item
         key={item.title}
         extra={
-          <img
-            width={272}
-            alt="logo"
-            src="https://gw.alicdn.com/bao/uploaded/i1/4107467909/O1CN01PhgbC428IN82kprm7_!!0-item_pic.jpg_300x300q90.jpg_.webp"
-          />
+          <Space direction="vertical" className="text-center" size={'large'}>
+            <img
+              width={272}
+              alt="logo"
+              src="https://gw.alicdn.com/bao/uploaded/i1/4107467909/O1CN01PhgbC428IN82kprm7_!!0-item_pic.jpg_300x300q90.jpg_.webp"
+            />
+
+            <Button type="primary" className="bg-[#1890ff]" danger>
+              查看详情
+            </Button>
+          </Space>
         }
       >
         <List.Item.Meta
@@ -40,7 +47,8 @@ const App: React.FC = () => (
           title={<span>陈楷豪</span>}
           description={<span>老中医</span>}
         />
-        
+        {/* 详细信息 */}
+        <OrderDesc />
       </List.Item>
     )}
   />

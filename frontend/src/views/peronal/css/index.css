@@ -7,3 +7,10 @@
   width: 1000px;
   margin: 0 auto;
 }
+
+.ant-descriptions-item-content {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 500px;
+}
