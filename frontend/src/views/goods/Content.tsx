@@ -1,3 +1,8 @@
+import GoodsDetail from '../../components/goods/Detail'
 export default function Content() {
-  return <div>Goods Content</div>
+  return (
+    <div>
+      <GoodsDetail />
+    </div>
+  )
 }
