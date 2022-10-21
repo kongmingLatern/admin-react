@@ -1,22 +1,49 @@
-import { Descriptions } from 'antd'
+import { Avatar, List } from 'antd'
 import React from 'react'
 import './css/index.css'
 
+const data = Array.from({ length: 23 }).map((_, i) => ({
+  href: 'https://ant.design',
+  title: `ant design part ${i}`,
+  avatar: 'https://joeschmoe.io/api/v1/random',
+  description:
+    'Ant Design, a design language for background applications, is refined by Ant UED Team.',
+  content:
+    'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
+}))
+
 const App: React.FC = () => (
-  <Descriptions title="用户名" bordered>
-    <Descriptions.Item label="姓名" span={3}>
-      陈楷豪
-    </Descriptions.Item>
-    <Descriptions.Item label="电话" span={3}>
-      129123901203
-    </Descriptions.Item>
-    <Descriptions.Item label="地址" span={3}>
-      江苏省常熟市
-    </Descriptions.Item>
-    <Descriptions.Item label="余额" span={3}>
-      ￥100
-    </Descriptions.Item>
-  </Descriptions>
+  <List
+    className="bg-white list"
+    itemLayout="vertical"
+    size="large"
+    pagination={{
+      onChange: page => {
+        console.log(page)
+      },
+      pageSize: 3,
+    }}
+    dataSource={data}
+    renderItem={item => (
+      <List.Item
+        key={item.title}
+        extra={
+          <img
+            width={272}
+            alt="logo"
+            src="https://gw.alicdn.com/bao/uploaded/i1/4107467909/O1CN01PhgbC428IN82kprm7_!!0-item_pic.jpg_300x300q90.jpg_.webp"
+          />
+        }
+      >
+        <List.Item.Meta
+          avatar={<Avatar src={item.avatar} />}
+          title={<span>陈楷豪</span>}
+          description={<span>老中医</span>}
+        />
+        
+      </List.Item>
+    )}
+  />
 )
 
 export default App

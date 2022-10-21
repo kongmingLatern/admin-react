@@ -2,3 +2,8 @@
   font-size: 26px;
   text-align: center;
 }
+
+.list {
+  width: 1000px;
+  margin: 0 auto;
+}
