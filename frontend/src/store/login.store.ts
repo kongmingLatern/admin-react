@@ -1,3 +1,4 @@
+import { LoginType } from './../type/index';
 import { makeAutoObservable } from 'mobx';
 import { http, setUid, getUid } from '../utils';
 export default class LoginState {
@@ -8,10 +9,14 @@ export default class LoginState {
 
   login = async ({ username, password }) => {
     // 调用登录接口
-    const res = await http.get('/users/login', {
+    const res: Record<string, any> = await http.get('/users/login', {
       params: { username, password }
     })
-    console.log(res);
+
+
+    if (res?.isAuth) {
+      localStorage.setItem('isAuth', '1')
+    }
 
     // 存入 token
     this.uid = res.data
