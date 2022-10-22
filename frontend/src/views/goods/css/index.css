@@ -6,3 +6,7 @@
 .ant-card-head-title {
   text-align: center;
 }
+
+.ant-modal-body {
+  background-color: #001529;
+}
