@@ -8,7 +8,7 @@ const http = axios.create({
 })
 
 
-http.interceptors.request.use((config: AxiosRequestConfig) => {
+http.interceptors.request.use((config) => {
   const uid = getUid()
   if (uid) {
     config.headers!.Authorization = `Bearer ${uid}`
@@ -19,7 +19,7 @@ http.interceptors.request.use((config: AxiosRequestConfig) => {
 })
 
 
-http.interceptors.response.use((response: AxiosResponse) => {
+http.interceptors.response.use((response) => {
   const { code } = response.data
   if (!isSuccess(code)) {
     return Promise.reject(response.data)
@@ -29,8 +29,6 @@ http.interceptors.response.use((response: AxiosResponse) => {
       isAuth: 1
     }
   }
-  console.log(response.data);
-
 
   return response.data
 }, (error) => {
