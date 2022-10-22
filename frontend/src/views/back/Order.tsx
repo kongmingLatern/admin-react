@@ -1,4 +1,4 @@
-import { Space, Table } from 'antd'
+import { Button, Space, Table } from 'antd'
 import type { ColumnsType } from 'antd/es/table'
 import React from 'react'
 import { OrderType } from '../../type'
@@ -20,11 +20,16 @@ const columns: ColumnsType<OrderType> = [
     key: 'otime',
   },
   {
-    title: 'Action',
+    title: '操作',
     key: 'action',
     render: (_, record) => (
       <Space size="middle">
-        <a>Delete</a>
+        <Button type="primary" danger>
+          添加
+        </Button>
+        <Button type="primary" danger>
+          删除
+        </Button>
       </Space>
     ),
   },
