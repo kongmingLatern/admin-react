@@ -21,3 +21,10 @@ code {
 .ant-layout-sider-children {
   height: 100vh;
 }
+
+button,
+[type='button'],
+[type='reset'],
+[type='submit'] {
+  background: unset;
+}
