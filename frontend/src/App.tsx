@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { Routes, Route, useNavigate } from 'react-router-dom'
-import UI from './components/UI'
+import UI from './pages/UI'
 import Index from './pages/home'
 import Login from './pages/Login'
 import Register from './pages/Register'
@@ -60,6 +60,7 @@ export default function App() {
         ></Route>
 
         {/* 后台管理 */}
+        <Route path="/admin" element={<Redirect to="/admin/user" />} />
         <Route
           path="/admin"
           element={
