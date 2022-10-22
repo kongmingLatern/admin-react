@@ -24,3 +24,9 @@ export interface OrderType {
   otime: number
   isFinish: number
 }
+
+export interface LoginType {
+  username: string
+  password: string
+  isAuth?: number
+}
