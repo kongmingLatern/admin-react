@@ -1,7 +1,7 @@
 import { Button } from 'antd'
 import { useNavigate } from 'react-router-dom'
 
-export default function Header({ title, text, isLogin = false, click = () => {} }) {
+export default function Header({ title, text, isAuth = false, click = () => {} }) {
   const navigate = useNavigate()
   return (
     <header className="font-semibold  bg-[#001529] relative w-[100%]">
@@ -9,7 +9,11 @@ export default function Header({ title, text, isLogin = false, click = () => {} 
 
       <div className="absolute top-6 right-6">
         <span className="text-white mr-3">
-          {isLogin && (
+          {isAuth ? (
+            <Button type="primary" onClick={() => navigate('/admin')}>
+              管理员
+            </Button>
+          ) : (
             <Button type="primary" onClick={() => navigate('/personal')}>
               我的
             </Button>
