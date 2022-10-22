@@ -12,7 +12,7 @@ export default function Index() {
       <Header
         title="一枝花"
         text="退出登录"
-        isLogin={true}
+        isAuth={localStorage.getItem('isAuth') === '1'}
         click={() => {
           navigate('/login')
           localStorage.clear()
