@@ -24,14 +24,9 @@ const columns: ColumnsType<OrderType> = [
     title: '操作',
     key: 'action',
     render: (_, record) => (
-      <Space size="middle">
-        <Button type="primary" danger>
-          添加
-        </Button>
-        <Button type="primary" danger>
-          删除
-        </Button>
-      </Space>
+      <Button type="primary" danger>
+        删除
+      </Button>
     ),
   },
 ]

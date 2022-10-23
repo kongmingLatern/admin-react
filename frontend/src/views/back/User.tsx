@@ -94,7 +94,6 @@ const App: React.FC = () => {
   ]
 
   async function removeItem(uid: any) {
-    console.log(uid)
     try {
       await http.delete('/users', {
         params: {
