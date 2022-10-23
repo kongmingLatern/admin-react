@@ -1,19 +1,25 @@
 # 数据库驱动：
 spring:
+#  h2:
+#    console:
+#      enabled: true
+#      path: /h2
   datasource:
+    url: jdbc:mysql://localhost:3306/shopping?serverTimezone=UTC&characterEncoding=utf8
     username: root
     password: 98735521
-    url: jdbc:mysql://localhost:3306/shopping?serverTimezone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver
-#全局日期格式化
+  #全局日期格式化
   jackson:
     date-format: yyyy年MM月dd日 HH时mm分ss秒
 #上传图片路径
 upload: D:\imgs\
-logging:
-  level:
-    com:
-      yan:
-        mapper: debug
+#logging:
+#  level:
+#    com:
+#      yan:
+#        mapper: debug
+
+
 
 

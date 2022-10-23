@@ -16,12 +16,13 @@ public class FileServiceImpl implements IFileService {
     private String uploadPath;
     @Override
     public String load(MultipartFile uploadFile) {
+        String imgName=UUID.randomUUID()+uploadFile.getOriginalFilename();
+        String path=uploadPath+ imgName;
         try {
-            uploadFile.transferTo(new File(uploadPath+ UUID.randomUUID()+uploadFile.getOriginalFilename()));
+            uploadFile.transferTo(new File(path));
         } catch (IOException e) {
             throw new BusinessException(Code.BUSINESS_ERR,"上传失败");
         }
-        String path = uploadPath+ UUID.randomUUID()+uploadFile.getOriginalFilename();
-        return path;
+        return imgName;
     }
 }

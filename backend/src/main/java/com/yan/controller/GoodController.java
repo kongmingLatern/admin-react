@@ -12,8 +12,6 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
-import java.util.Map;
-
 
 @RestController
 @RequestMapping("/goods")
@@ -44,8 +42,10 @@ public class GoodController {
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         HttpSession session = request.getSession();
         String path = (String)session.getAttribute("path");
+        path="http://localhost:8080/image/"+path;
         good.setImgs(path);
         boolean flag = goodService.save(good);
+        session.removeAttribute("path");
         return new Result(flag?Code.SAVE_OK:Code.SAVE_ERR,null,flag?"添加成功":"添加失败");
     }
     @DeleteMapping

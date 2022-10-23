@@ -9,6 +9,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -18,8 +19,8 @@ public class UserController {
     IUserService userService;
     @GetMapping
     public Result getAll(){
-        Map<String, Object> map = userService.getMap(null);
-        return new Result(map==null?Code.GET_ERR:Code.GET_OK,map,map==null?"查询失败":"查询成功");
+        List<Map<String, Object>> maps = userService.listMaps();
+        return new Result(maps==null?Code.GET_ERR:Code.GET_OK,maps,maps==null?"查询失败":"查询成功");
     }
     @DeleteMapping
     public Result delete(String uid){
