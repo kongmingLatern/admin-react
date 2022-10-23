@@ -1,7 +1,8 @@
 import { Button, Space, Table } from 'antd'
 import type { ColumnsType } from 'antd/es/table'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { OrderType } from '../../type'
+import { http } from '../../utils'
 
 const columns: ColumnsType<OrderType> = [
   {
@@ -35,30 +36,18 @@ const columns: ColumnsType<OrderType> = [
   },
 ]
 
-const data: OrderType[] = [
-  {
-    oid: '1212',
-    gid: '1212',
-    uid: '111',
-    otime: 2021,
-    isFinish: 0,
-  },
-  {
-    oid: '1212',
-    gid: '1212',
-    uid: '111',
-    otime: 2021,
-    isFinish: 0,
-  },
-  {
-    oid: '1212',
-    gid: '1212',
-    uid: '111',
-    otime: 20212121,
-    isFinish: 1,
-  },
-]
+const App: React.FC = () => {
+  const [data, setData] = useState<OrderType[]>([])
 
-const App: React.FC = () => <Table columns={columns} dataSource={data} />
+  useEffect(() => {
+    async function getData() {
+      const res = await http.get('/orders')
+      setData(res.data)
+    }
+    getData()
+  }, [])
+
+  return <Table columns={columns} dataSource={data} rowKey="oid" />
+}
 
 export default App
