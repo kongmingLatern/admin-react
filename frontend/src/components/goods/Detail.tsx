@@ -15,22 +15,27 @@ const CardItem = (item: GoodsType) => (
     {/* 库存 */}
     <p className="text-gray-400">
       库存：
-      <span className="text-2xl text-blue-400 font-semibold">{item.goodCount}</span>
+      {item.goodCount < 10 ? (
+        item.goodCount > 0 ? (
+          <span className="text-2xl font-bold text-red-500">{item.goodCount}[即将售空]</span>
+        ) : (
+          <span className="text-2xl font-bold text-red-500">已售罄</span>
+        )
+      ) : (
+        <span className="text-2xl text-blue-400 font-semibold">{item.goodCount}[库存充足]</span>
+      )}
     </p>
-
     {/* 类别     */}
     <p>
       类别：
       <span className="">{item.type}</span>
     </p>
-
     {/* 商品价格 */}
     <p>
       价格：￥
       <span className="text-red-500 font-bold text-4xl">{item.price}</span>
       /个
     </p>
-
     {/* 配送信息 */}
     <div className="mt-5">
       <p>
@@ -39,13 +44,12 @@ const CardItem = (item: GoodsType) => (
       </p>
       <p>快递：免运费</p>
     </div>
-
     {/* 商品描述 */}
+    <h2 className="font-bold text-2xl mt-10">商品描述:</h2>
     <p className="mt-5">
       {/* 销售渠道类型：纯电商(只在线上销售)销售渠道类型：纯电商(只在线上销售)销售渠道类型：纯电商(只在线上销售)销售渠道类型：纯电商(只在线上销售)销售渠道类型：纯电商(只在线上销售)销售渠道类型：纯电商(只在线上销售) */}
       {item.desc}
     </p>
-
     {/* 立即购买 */}
     <footer className="text-right  mt-5 ">
       <Button type="primary" danger className="rounded">
@@ -75,7 +79,7 @@ export default function Detail() {
   return (
     <div className="flex justify-around rounded-tr-lg bg-[#222] detail overflow-hidden">
       {/* 商品图片 */}
-      <div className="img flex-1 text-center bg-white">
+      <div className="img flex-1 flex justify-center items-center bg-white">
         <Image src={data && data.imgs} preview={false} />
       </div>
 

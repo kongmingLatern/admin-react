@@ -26,7 +26,7 @@ const App: React.FC = () => {
   }, [])
   const list = data.map(item => (
     <Card.Grid style={gridStyle} hoverable key={item.gid}>
-      <Link to="/home/goods">
+      <Link to={`/home/goods/${item.gid}`}>
         <Card cover={<img alt="example" src={item.imgs} />} style={{ width: 300 }} bordered={false}>
           <Card.Meta
             title={<CardHeader name={item.gname} price={item.price} />}
