@@ -40,7 +40,7 @@ export default function App() {
           ></Route>
           {/* 商品页面 */}
           <Route
-            path="goods"
+            path="goods/:gid"
             element={
               <AuthComponent>
                 <Goods />

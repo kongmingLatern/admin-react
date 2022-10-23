@@ -14,7 +14,7 @@ export interface GoodsType {
   type: string
   imgs: string
   desc: string
-  goodcount: number
+  goodCount: number
   price: number
 }
 export interface OrderType {

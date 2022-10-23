@@ -1,29 +1,33 @@
 import { Button, Card, Image } from 'antd'
+import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
+import { GoodsType } from '../../type'
+import { http } from '../../utils'
 import '../../views/goods/css/index.css'
 
-const CardItem = (
+const CardItem = (item: GoodsType) => (
   <Card
-    title="关于我转生变成史莱姆这档事卫衣连帽男利姆露萌王动漫二次元外套"
+    title={item.gname}
     style={{ width: 300, backgroundColor: '#fff' }}
     className="flex-auto"
     bordered={false}
   >
-    {/* 月促 */}
+    {/* 库存 */}
     <p className="text-gray-400">
-      月促：
-      <span className="text-2xl text-blue-400 font-semibold">10</span>
+      库存：
+      <span className="text-2xl text-blue-400 font-semibold">{item.goodCount}</span>
     </p>
 
     {/* 类别     */}
     <p>
       类别：
-      <span className="">衣服</span>
+      <span className="">{item.type}</span>
     </p>
 
     {/* 商品价格 */}
     <p>
       价格：￥
-      <span className="text-red-500 font-bold text-4xl">110</span>
+      <span className="text-red-500 font-bold text-4xl">{item.price}</span>
       /个
     </p>
 
@@ -38,7 +42,8 @@ const CardItem = (
 
     {/* 商品描述 */}
     <p className="mt-5">
-      销售渠道类型：纯电商(只在线上销售)销售渠道类型：纯电商(只在线上销售)销售渠道类型：纯电商(只在线上销售)销售渠道类型：纯电商(只在线上销售)销售渠道类型：纯电商(只在线上销售)销售渠道类型：纯电商(只在线上销售)
+      {/* 销售渠道类型：纯电商(只在线上销售)销售渠道类型：纯电商(只在线上销售)销售渠道类型：纯电商(只在线上销售)销售渠道类型：纯电商(只在线上销售)销售渠道类型：纯电商(只在线上销售)销售渠道类型：纯电商(只在线上销售) */}
+      {item.desc}
     </p>
 
     {/* 立即购买 */}
@@ -51,18 +56,31 @@ const CardItem = (
 )
 
 export default function Detail() {
+  const { gid } = useParams()
+
+  const [data, setData] = useState<GoodsType>()
+
+  useEffect(() => {
+    async function getData() {
+      const res = await http.get('/goods/getByGid', {
+        params: {
+          gid,
+        },
+      })
+      setData(res.data)
+    }
+    getData()
+  }, [])
+
   return (
     <div className="flex justify-around rounded-tr-lg bg-[#222] detail overflow-hidden">
       {/* 商品图片 */}
       <div className="img flex-1 text-center bg-white">
-        <Image
-          src="https://gw.alicdn.com/bao/uploaded/i1/4107467909/O1CN01PhgbC428IN82kprm7_!!0-item_pic.jpg_300x300q90.jpg_.webp"
-          preview={false}
-        />
+        <Image src={data && data.imgs} preview={false} />
       </div>
 
       {/* 商品描述 */}
-      {CardItem}
+      {data && CardItem(data)}
     </div>
   )
 }
