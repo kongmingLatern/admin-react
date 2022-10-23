@@ -1,4 +1,4 @@
-import { Button } from 'antd'
+import { Button, Space } from 'antd'
 import { useNavigate } from 'react-router-dom'
 
 export default function Header({ title, text, isAuth = false, click = () => {} }) {
@@ -19,9 +19,14 @@ export default function Header({ title, text, isAuth = false, click = () => {} }
             </Button>
           )}
         </span>
-        <Button type="primary" onClick={click}>
-          {text}
-        </Button>
+        <Space size={'middle'}>
+          <Button type="primary" onClick={() => navigate('/home')}>
+            主页
+          </Button>
+          <Button type="primary" onClick={click}>
+            {text}
+          </Button>
+        </Space>
       </div>
     </header>
   )
