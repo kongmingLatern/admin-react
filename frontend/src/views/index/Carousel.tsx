@@ -11,8 +11,9 @@ const contentStyle: React.CSSProperties = {
 }
 
 const imgs: string[] = [
-  'https://img0.baidu.com/it/u=4198904971,2407265308&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500',
-  'https://img0.baidu.com/it/u=3028162671,4134546975&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500',
+  'https://img.alicdn.com/imgextra/i1/6000000002537/O1CN01ZQTFs21UbzbSaVfNG_!!6000000002537-2-octopus.png',
+  'https://img.alicdn.com/imgextra/i2/6000000007179/O1CN01Ozm2mj22u28cnIg3c_!!6000000007179-0-octopus.jpg',
+  'https://img.alicdn.com/imgextra/i3/6000000008032/O1CN01zYsRkj29Chz6raKBV_!!6000000008032-2-octopus.png',
 ]
 
 const imgList = imgs.map((item, index) => (

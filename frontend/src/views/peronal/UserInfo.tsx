@@ -1,5 +1,4 @@
 import Avatar from '../../components/peronal/Avatar'
-import PersonalInfo from './PersonalInfo'
 
 export default function UserInfo() {
   return (
@@ -8,8 +7,7 @@ export default function UserInfo() {
         <div className="absolute left-[50%] top-[50%] text-white translate-x-[-50%] translate-y-[-50%]">
           {/* 头像 */}
           <Avatar />
-          {/* 个人信息 */}
-          <PersonalInfo />
+          <p className="text-gray-300 mt-3">这个人很懒，什么都没有留下</p>
         </div>
       </div>
     </>

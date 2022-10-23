@@ -26,12 +26,12 @@ const CardItem = (item: GoodsType) => (
       )}
     </p>
     {/* 类别     */}
-    <p>
+    <p className="mt-2">
       类别：
       <span className="">{item.type}</span>
     </p>
     {/* 商品价格 */}
-    <p>
+    <p className="mt-2">
       价格：￥
       <span className="text-red-500 font-bold text-4xl">{item.price}</span>
       /个
@@ -42,7 +42,7 @@ const CardItem = (item: GoodsType) => (
         配送：
         <span>广东东莞 至 苏州市 常熟市</span>
       </p>
-      <p>快递：免运费</p>
+      <p className="mt-2">快递：免运费</p>
     </div>
     {/* 商品描述 */}
     <h2 className="font-bold text-2xl mt-10">商品描述:</h2>
