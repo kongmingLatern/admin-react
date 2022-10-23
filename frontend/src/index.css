@@ -28,3 +28,7 @@ button,
 [type='submit'] {
   background: unset;
 }
+
+.ant-upload-span {
+  color: white;
+}

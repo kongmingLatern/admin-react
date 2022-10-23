@@ -14,3 +14,9 @@
   white-space: nowrap;
   max-width: 500px;
 }
+
+.ant-list-item-extra {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
