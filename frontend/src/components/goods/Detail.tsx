@@ -1,4 +1,4 @@
-import { Button, Card, Image } from 'antd'
+import { Button, Card, Image, message } from 'antd'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { GoodsType } from '../../type'
@@ -52,13 +52,22 @@ const CardItem = (item: GoodsType) => (
     </p>
     {/* 立即购买 */}
     <footer className="text-right  mt-5 ">
-      <Button type="primary" danger className="rounded">
+      <Button type="primary" danger className="rounded" onClick={() => addOrder(item.gid)}>
         立即购买
       </Button>
     </footer>
   </Card>
 )
 
+async function addOrder(gid: string) {
+  console.log(gid)
+  try {
+    const res = await http.post('/orders', { gid })
+    message.success('添加订单成功')
+  } catch (e) {
+    message.error('添加订单失败')
+  }
+}
 export default function Detail() {
   const { gid } = useParams()
 
