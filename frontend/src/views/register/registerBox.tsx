@@ -11,7 +11,10 @@ const App: React.FC = () => {
     let res: Record<string, any> = []
     try {
       res = await http.post('/users/register', values)
-      message.success(res.msg)
+      message.success(res.msg + '，2s 后自动跳转至登录页面')
+      setTimeout(() => {
+        window.location.href = '/login'
+      }, 2000)
     } catch (err: any) {
       message.error(err.msg)
     } finally {

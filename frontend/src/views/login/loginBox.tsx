@@ -9,14 +9,18 @@ const App: React.FC = () => {
   const { loginState } = useStore()
 
   const onFinish = async (values: any) => {
-    try {
-      await loginState.login(values)
-      message.success('登录成功，2秒后自动跳转至主页')
-      setTimeout(() => {
-        navigate('/home')
-      }, 2000)
-    } catch (err: any) {
-      message.error(err.msg)
+    if (values.remember) {
+      try {
+        await loginState.login(values)
+        message.success('登录成功，2秒后自动跳转至主页')
+        setTimeout(() => {
+          navigate('/home')
+        }, 2000)
+      } catch (err: any) {
+        message.error(err.msg)
+      }
+    } else {
+      message.error('请阅读条款后再登录')
     }
   }
 
@@ -52,7 +56,12 @@ const App: React.FC = () => {
             <Input.Password />
           </Form.Item>
 
-          <Form.Item name="remember" valuePropName="checked" wrapperCol={{ offset: 4, span: 16 }}>
+          <Form.Item
+            name="remember"
+            valuePropName="checked"
+            wrapperCol={{ offset: 4, span: 16 }}
+            rules={[{ required: true, message: '请勾选条款' }]}
+          >
             <Checkbox>我已阅读下述条款</Checkbox>
           </Form.Item>
 
