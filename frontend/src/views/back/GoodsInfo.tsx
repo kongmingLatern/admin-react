@@ -31,7 +31,7 @@ const columns: ColumnsType<GoodsType> = [
     title: '图片',
     key: 'imgs',
     dataIndex: 'imgs',
-    render: text => <>{<img src={text} alt="商品图片" />}</>,
+    render: text => <>{<img src={text} alt="商品图片" width={90} height={90} />}</>,
   },
   {
     title: '库存',
@@ -65,6 +65,7 @@ const removeItem = async gid => {
       },
     })
     message.success('删除成功')
+    window.location.reload()
   } catch (e: any) {
     message.error(e.msg)
   }
@@ -92,9 +93,9 @@ const App: React.FC = () => {
     try {
       await http.post('/goods', values)
       message.success('添加成功')
-      // setTimeout(() => {
-      //   window.location.reload()
-      // }, 1000)
+      setTimeout(() => {
+        window.location.reload()
+      }, 1000)
     } catch (e: any) {
       message.error(e.msg)
     }
@@ -134,7 +135,7 @@ const App: React.FC = () => {
             name="type"
             rules={[{ required: true, message: 'Please input your Goods Type!' }]}
           >
-            <Input.Password />
+            <Input />
           </Form.Item>
           <Form.Item
             name="picture"
@@ -144,7 +145,7 @@ const App: React.FC = () => {
           >
             <Upload
               name="file"
-              action="http://10.16.20.4:8080/goods/upload"
+              action="http://localhost:8080/goods/upload"
               method="post"
               listType="picture"
               withCredentials={true}
