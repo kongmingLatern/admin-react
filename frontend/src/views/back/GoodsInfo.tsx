@@ -90,8 +90,7 @@ const App: React.FC = () => {
 
   const onSuccess = async values => {
     try {
-      const res = await http.post('/goods', values)
-      console.log(res)
+      await http.post('/goods', values)
       message.success('添加成功')
       // setTimeout(() => {
       //   window.location.reload()
@@ -125,8 +124,8 @@ const App: React.FC = () => {
         >
           <Form.Item
             label="商品名称"
-            name="gName"
-            rules={[{ required: true, message: 'Please input your gName!' }]}
+            name="gname"
+            rules={[{ required: true, message: 'Please input your gname!' }]}
           >
             <Input />
           </Form.Item>
