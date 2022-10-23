@@ -1,11 +1,13 @@
 import { UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons'
 import { Layout, Menu, MenuProps } from 'antd'
-import { Outlet, Link } from 'react-router-dom'
+import { Outlet, Link, useNavigate } from 'react-router-dom'
 import Header from '../components/Header'
 
 export default function UI() {
   const { Content, Footer, Sider } = Layout
   type MenuItem = Required<MenuProps>['items'][number]
+
+  const navigate = useNavigate()
 
   function getItem(
     label: React.ReactNode,
@@ -32,7 +34,14 @@ export default function UI() {
   ]
   return (
     <>
-      <Header title="后台管理系统" text="退出登录" />
+      <Header
+        title="后台管理系统"
+        text="退出登录"
+        click={() => {
+          navigate('/login')
+          localStorage.clear()
+        }}
+      />
       <Layout>
         <Sider breakpoint="lg" collapsedWidth="0">
           <div className="logo" />

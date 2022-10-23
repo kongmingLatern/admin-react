@@ -4,33 +4,6 @@ import React, { useEffect, useState } from 'react'
 import { UserType } from '../../type'
 import { http } from '../../utils'
 
-// const data: UserType[] = [
-//   {
-//     uid: '121212',
-//     key: '1',
-//     name: '大奔',
-//     tel: '123456789',
-//     address: '常熟市奥术大师',
-//     balance: '100',
-//   },
-//   {
-//     uid: '121213',
-//     key: '2',
-//     name: '陈楷豪',
-//     tel: '123456781212',
-//     address: '常熟市按实际都',
-//     balance: '200',
-//   },
-//   {
-//     uid: '121215',
-//     key: '3',
-//     name: '颜志华',
-//     tel: '12312931',
-//     address: '常熟市第三人民医院',
-//     balance: '300',
-//   },
-// ]
-
 const App: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
   let [data, setData] = useState<UserType[]>([])
@@ -38,20 +11,18 @@ const App: React.FC = () => {
   useEffect(() => {
     async function getData() {
       let res = await http.get('/users')
-      console.log(res)
-      setData([res.data])
+      setData(res.data)
     }
     getData()
   }, [])
-
-  const showModal = () => {
-    setIsModalOpen(true)
-  }
 
   const onSuccess = async values => {
     try {
       await http.post('/users/register', values)
       message.success('添加成功')
+      setTimeout(() => {
+        window.location.reload()
+      }, 1000)
     } catch (e: any) {
       message.error(e.msg)
     }
@@ -76,6 +47,11 @@ const App: React.FC = () => {
       dataIndex: 'username',
       key: 'username',
       render: text => <a>{text}</a>,
+    },
+    {
+      title: '密码',
+      dataIndex: 'password',
+      key: 'password',
     },
     {
       title: '电话',
@@ -107,21 +83,44 @@ const App: React.FC = () => {
     {
       title: '操作',
       key: 'action',
-      render: (_, record) => (
+      render: ({ uid }, record) => (
         <Space size="middle">
-          <Button type="primary" danger onClick={() => setIsModalOpen(true)}>
-            添加
-          </Button>
-          <Button type="primary" danger>
+          <Button type="primary" danger onClick={() => removeItem(uid)}>
             删除
           </Button>
         </Space>
       ),
     },
   ]
+
+  async function removeItem(uid: any) {
+    console.log(uid)
+    try {
+      await http.delete('/users', {
+        params: {
+          uid,
+        },
+      })
+      message.success('删除成功')
+      setTimeout(() => {
+        window.location.reload()
+      }, 1000)
+    } catch (error) {
+      message.error('删除失败')
+    }
+  }
+
   return (
     <>
-      <Modal title="添加用户" open={isModalOpen} footer={null}>
+      <Button type="primary" danger onClick={() => setIsModalOpen(true)}>
+        添加
+      </Button>
+      <Modal
+        title="添加用户"
+        open={isModalOpen}
+        onCancel={() => setIsModalOpen(false)}
+        footer={null}
+      >
         <Form
           name="basic"
           initialValues={{ remember: false }}
