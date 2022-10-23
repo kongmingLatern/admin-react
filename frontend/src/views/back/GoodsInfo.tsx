@@ -150,7 +150,7 @@ const App: React.FC = () => {
               listType="picture"
               withCredentials={true}
             >
-              <Button icon={<UploadOutlined />} className="text-inherit">
+              <Button type='ghost' icon={<UploadOutlined />} className="text-white" >
                 点击上传
               </Button>
             </Upload>
