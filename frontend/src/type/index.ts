@@ -10,7 +10,8 @@ export interface UserType {
 export interface GoodsType {
   gid: string
   key?: string
-  gname: string
+  gname?: string
+  gName?: string
   type: string
   imgs: string
   desc: string
@@ -21,7 +22,7 @@ export interface OrderType {
   oid: string
   uid: string
   gid: string
-  otime: number
+  oTime: string
   isFinish: number
 }
 
