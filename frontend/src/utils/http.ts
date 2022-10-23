@@ -3,11 +3,15 @@ import { Status } from './Status'
 import { getUid } from './uid'
 
 const http = axios.create({
-  // baseURL: 'http://localhost:8080',
-  baseURL: 'http://10.16.20.4:8080',
+  baseURL: 'http://localhost:8080',
+  // baseURL: 'http://10.16.20.4:8080',
   timeout: 5000,
   withCredentials: true,
-  
+  headers: {
+    post: {
+      'Content-Type': 'application/json;charset=UTF-8'
+    }
+  },
 })
 
 
@@ -36,7 +40,6 @@ http.interceptors.response.use((response) => {
   return response.data
 }, (error) => {
 
-  console.log('error');
   // 超出 2xx 范围的状态码都会触发该函数
   // 401 未授权
   if (error.response!.status === 401) {

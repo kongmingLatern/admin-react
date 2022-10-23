@@ -12,7 +12,7 @@ export interface GoodsType {
   key?: string
   gname: string
   type: string
-  imgs: string[]
+  imgs: string
   desc: string
   goodcount: number
   price: number
