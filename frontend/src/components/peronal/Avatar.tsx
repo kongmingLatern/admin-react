@@ -1,7 +1,6 @@
 import { UserOutlined } from '@ant-design/icons'
 import { Avatar, Badge } from 'antd'
-import React, { useEffect, useState } from 'react'
-import { http } from '../../utils'
+import React from 'react'
 
 const App: React.FC = () => {
   const realName = localStorage.getItem('uid')

@@ -22,12 +22,6 @@ code {
   height: 100vh;
 }
 
-button,
-[type='button'],
-[type='reset'],
-[type='submit'] {
-  background: unset;
-}
 
 .ant-upload-span {
   color: white;
