@@ -1,4 +1,3 @@
-import { LoginType } from './../type/index';
 import { makeAutoObservable } from 'mobx';
 import { http, setUid, getUid } from '../utils';
 export default class LoginState {
@@ -12,6 +11,7 @@ export default class LoginState {
     const res: Record<string, any> = await http.get('/users/login', {
       params: { username, password }
     })
+    console.log(res);
 
 
     if (res?.isAuth) {

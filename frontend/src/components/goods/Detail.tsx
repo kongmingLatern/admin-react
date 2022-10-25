@@ -25,17 +25,20 @@ const CardItem = (item: GoodsType) => (
         <span className="text-2xl text-blue-400 font-semibold">{item.goodCount}[库存充足]</span>
       )}
     </p>
-    {/* 类别     */}
+
+    {/* 类别 */}
     <p className="mt-2">
       类别：
       <span className="">{item.type}</span>
     </p>
+
     {/* 商品价格 */}
     <p className="mt-2">
       价格：￥
       <span className="text-red-500 font-bold text-4xl">{item.price}</span>
       /个
     </p>
+
     {/* 配送信息 */}
     <div className="mt-5">
       <p>
@@ -44,26 +47,34 @@ const CardItem = (item: GoodsType) => (
       </p>
       <p className="mt-2">快递：免运费</p>
     </div>
+
     {/* 商品描述 */}
     <h2 className="font-bold text-2xl mt-10">商品描述:</h2>
-    <p className="mt-5">
-      {/* 销售渠道类型：纯电商(只在线上销售)销售渠道类型：纯电商(只在线上销售)销售渠道类型：纯电商(只在线上销售)销售渠道类型：纯电商(只在线上销售)销售渠道类型：纯电商(只在线上销售)销售渠道类型：纯电商(只在线上销售) */}
-      {item.desc}
-    </p>
+    <p className="mt-5">{item.desc}</p>
+
     {/* 立即购买 */}
     <footer className="text-right  mt-5 ">
-      <Button type="primary" danger className="rounded" onClick={() => addOrder(item.gid)}>
+      <Button
+        type="primary"
+        danger
+        className="rounded"
+        onClick={() => addOrder(item.gid, item.goodCount, item.price)}
+      >
         立即购买
       </Button>
     </footer>
   </Card>
 )
 
-async function addOrder(gid: string) {
-  console.log(gid)
+async function addOrder(gid: string, count: number, price: number) {
   try {
-    const res = await http.post('/orders', { gid })
+    if (count <= 0) {
+      message.error('商品已售罄')
+      return
+    }
+    await http.post('/orders', { gid })
     message.success('添加订单成功')
+    await http.put('/goods', { gid, goodCount: count - 1, price })
   } catch (e) {
     message.error('添加订单失败')
   }

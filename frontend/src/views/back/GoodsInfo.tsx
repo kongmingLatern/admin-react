@@ -1,5 +1,5 @@
 import { UploadOutlined } from '@ant-design/icons'
-import { Button, Form, Input, message, Modal, Space, Table, Upload } from 'antd'
+import { Button, Form, Input, message, Modal, Space, Table, Tag, Upload } from 'antd'
 import type { ColumnsType } from 'antd/es/table'
 import React, { useEffect, useState } from 'react'
 import { GoodsType } from '../../type'
@@ -35,8 +35,17 @@ const columns: ColumnsType<GoodsType> = [
   },
   {
     title: '库存',
-    key: 'goodcount',
-    dataIndex: 'goodcount',
+    key: 'goodCount',
+    dataIndex: 'goodCount',
+    render: text => (
+      <>
+        {text || (
+          <Tag color="red" className="font-bold text-lg">
+            库存不足
+          </Tag>
+        )}
+      </>
+    ),
   },
   {
     title: '价格',
@@ -150,7 +159,7 @@ const App: React.FC = () => {
               listType="picture"
               withCredentials={true}
             >
-              <Button type='ghost' icon={<UploadOutlined />} className="text-white" >
+              <Button type="ghost" icon={<UploadOutlined />} className="text-white">
                 点击上传
               </Button>
             </Upload>

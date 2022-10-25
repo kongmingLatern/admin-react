@@ -1,4 +1,4 @@
-import { Avatar, Button, Descriptions, List, Space, Tag } from 'antd'
+import { Avatar, Descriptions, List, Tag } from 'antd'
 import React, { useEffect, useState } from 'react'
 import './css/index.css'
 import { http } from '../../utils'
@@ -28,18 +28,7 @@ const App: React.FC = () => {
       }}
       dataSource={data}
       renderItem={item => (
-        <List.Item
-          key={item.oid}
-          extra={
-            <Space direction="vertical" className="text-center" size={'large'}>
-              <img width={272} alt="logo" src={item.imgs} />
-
-              <Button type="primary" className="bg-[#1890ff]" danger>
-                查看详情
-              </Button>
-            </Space>
-          }
-        >
+        <List.Item key={item.oid} extra={<img width={272} alt="logo" src={item.imgs} />}>
           <List.Item.Meta
             avatar={<Avatar style={{ lineHeight: '32px' }} size={40} icon={<UserOutlined />} />}
             title={<span>{item.realName}</span>}
