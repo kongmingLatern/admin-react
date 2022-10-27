@@ -1,4 +1,4 @@
-import { Avatar, Descriptions, List, Tag } from 'antd'
+import { Avatar, Button, Descriptions, List, message, Space, Tag } from 'antd'
 import React, { useEffect, useState } from 'react'
 import './css/index.css'
 import { http } from '../../utils'
@@ -6,6 +6,26 @@ import { UserOutlined } from '@ant-design/icons'
 
 const App: React.FC = () => {
   const [data, setData] = useState<any[]>([])
+  const payment = (price, oid, gid) => {
+    let isEnough: boolean = true
+    http.put('/users', {
+      uid: localStorage.getItem('uid'),
+      pullet: 400 - price < 0 ? price && (isEnough = false) : 400 - price,
+    })
+
+    if (!isEnough) {
+      message.error('余额不足')
+    } else {
+      http.put('/orders', {
+        uid: localStorage.getItem('uid'),
+        oid,
+        gid,
+        isFinish: 1,
+      })
+      message.success('支付成功')
+      window.location.reload()
+    }
+  }
 
   useEffect(() => {
     async function getData() {
@@ -44,7 +64,20 @@ const App: React.FC = () => {
             <Descriptions.Item label="地址">{item.address}</Descriptions.Item>
             <Descriptions.Item label="价格">￥{item.price}</Descriptions.Item>
             <Descriptions.Item label="是否完成">
-              {item.isFinish ? <Tag color="blue">完成</Tag> : <Tag color="red">未完成</Tag>}
+              {item.isFinish ? (
+                <Tag color="blue">完成</Tag>
+              ) : (
+                <Space>
+                  <Tag color="red">未完成</Tag>
+                  <Button
+                    type="primary"
+                    danger
+                    onClick={() => payment(item.price, item.oid, item.gid)}
+                  >
+                    支付
+                  </Button>
+                </Space>
+              )}
             </Descriptions.Item>
           </Descriptions>
         </List.Item>
