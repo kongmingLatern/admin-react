@@ -39,13 +39,6 @@ http.interceptors.response.use((response) => {
 
   return response.data
 }, (error) => {
-
-  // 超出 2xx 范围的状态码都会触发该函数
-  // 401 未授权
-  if (error.response!.status === 401) {
-    // 跳转到登录页
-    // history.push('/login')
-  }
   return Promise.reject(error)
 })
 
