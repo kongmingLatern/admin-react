@@ -52,7 +52,7 @@ const CardItem = (item: GoodsType) => (
     <h2 className="font-bold text-2xl mt-10">商品描述:</h2>
     <p className="mt-5">{item.desc}</p>
 
-    {/* 立即购买 */}
+    {/* 我想要 */}
     <footer className="text-right  mt-5 ">
       <Button
         type="primary"
@@ -60,7 +60,7 @@ const CardItem = (item: GoodsType) => (
         className="rounded"
         onClick={() => addOrder(item.gid, item.goodCount, item.price)}
       >
-        立即购买
+        我想要
       </Button>
     </footer>
   </Card>

@@ -2,7 +2,7 @@ import { Button, message, Space } from 'antd'
 import Avatar from '../../components/peronal/Avatar'
 import { http } from '../../utils'
 
-export default function UserInfo({ user }: any) {
+export default function UserInfo({ user, length }: any) {
   const addMoney = () => {
     const { pullet } = user
     try {
@@ -22,7 +22,7 @@ export default function UserInfo({ user }: any) {
         <div className="absolute left-[50%] top-[50%] text-white translate-x-[-50%] translate-y-[-50%]">
           {/* 头像 */}
           <Space direction="vertical">
-            <Avatar name={user.realName} />
+            <Avatar name={user.realName} length={length} />
             <p className="text-gray-300 ">这个人很懒，什么都没有留下</p>
             <Space>
               <span>余额：￥{user.pullet}</span>

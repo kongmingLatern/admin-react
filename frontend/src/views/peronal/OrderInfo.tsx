@@ -4,7 +4,7 @@ import './css/index.css'
 import { http } from '../../utils'
 import { UserOutlined } from '@ant-design/icons'
 
-const App = ({ user }: any) => {
+const App = ({ user, changeLengh }: any) => {
   const [data, setData] = useState<any[]>([])
   const payment = (price, oid, gid) => {
     let isEnough: boolean = true
@@ -37,6 +37,7 @@ const App = ({ user }: any) => {
         },
       })
       setData(res.data)
+      changeLengh(res.data.length)
     }
     getData()
   }, [])
