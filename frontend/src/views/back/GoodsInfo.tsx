@@ -39,7 +39,15 @@ const columns: ColumnsType<GoodsType> = [
     dataIndex: 'goodCount',
     render: text => (
       <>
-        {text || (
+        {(text < 10 ? (
+          <Tag color="red" className="font-bold text-lg">
+            {text === 0 ? '已售罄，请尽快补货' : '即将售罄，剩余' + text}
+          </Tag>
+        ) : (
+          <Tag color="blue" className="font-bold text-lg">
+            库存剩余 {text}
+          </Tag>
+        )) || (
           <Tag color="red" className="font-bold text-lg">
             库存不足
           </Tag>
