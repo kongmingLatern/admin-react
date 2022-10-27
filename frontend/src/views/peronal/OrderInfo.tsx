@@ -4,13 +4,14 @@ import './css/index.css'
 import { http } from '../../utils'
 import { UserOutlined } from '@ant-design/icons'
 
-const App: React.FC = () => {
+const App = ({ user }: any) => {
   const [data, setData] = useState<any[]>([])
   const payment = (price, oid, gid) => {
     let isEnough: boolean = true
+    const { pullet } = user
     http.put('/users', {
       uid: localStorage.getItem('uid'),
-      pullet: 400 - price < 0 ? price && (isEnough = false) : 400 - price,
+      pullet: pullet - price < 0 ? price && (isEnough = false) : pullet - price,
     })
 
     if (!isEnough) {
@@ -28,8 +29,13 @@ const App: React.FC = () => {
   }
 
   useEffect(() => {
+    // 根据 uid 查询当前用户的订单
     async function getData() {
-      const res = await http.get('/orders')
+      const res = await http.get('/orders/getByUid', {
+        params: {
+          uid: localStorage.getItem('uid') || '',
+        },
+      })
       setData(res.data)
     }
     getData()

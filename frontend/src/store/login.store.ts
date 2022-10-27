@@ -11,7 +11,6 @@ export default class LoginState {
     const res: Record<string, any> = await http.get('/users/login', {
       params: { username, password }
     })
-    console.log(res);
 
 
     if (res?.isAuth) {
@@ -22,8 +21,10 @@ export default class LoginState {
     this.uid = res.data
 
 
+
     // 存入 ls
     setUid(this.uid)
+
   }
 }
 
