@@ -83,6 +83,8 @@ const data: DataType[] = [
   },
 ]
 
-const UserTable: React.FC = () => <Table columns={columns} dataSource={data} />
+const UserTable: React.FC = () => (
+  <Table columns={columns} dataSource={data} />
+)
 
 export default UserTable

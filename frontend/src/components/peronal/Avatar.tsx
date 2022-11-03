@@ -6,7 +6,11 @@ const App = ({ name, length }) => {
     <>
       <span className="avatar-item">
         <Badge count={length}>
-          <Avatar shape="circle" icon={<UserOutlined />} size={'large'} />
+          <Avatar
+            shape="circle"
+            icon={<UserOutlined />}
+            size={'large'}
+          />
         </Badge>
         <div className="mt-2">{name}</div>
       </span>
