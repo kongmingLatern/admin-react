@@ -1,4 +1,12 @@
-import { Avatar, Button, Descriptions, List, message, Space, Tag } from 'antd'
+import {
+  Avatar,
+  Button,
+  Descriptions,
+  List,
+  message,
+  Space,
+  Tag,
+} from 'antd'
 import React, { useEffect, useState } from 'react'
 import './css/index.css'
 import { http } from '../../utils'
@@ -11,7 +19,10 @@ const App = ({ user, changeLengh }: any) => {
     const { pullet } = user
     http.put('/users', {
       uid: localStorage.getItem('uid'),
-      pullet: pullet - price < 0 ? price && (isEnough = false) : pullet - price,
+      pullet:
+        pullet - price < 0
+          ? price && (isEnough = false)
+          : pullet - price,
     })
 
     if (!isEnough) {
@@ -55,21 +66,49 @@ const App = ({ user, changeLengh }: any) => {
       }}
       dataSource={data}
       renderItem={item => (
-        <List.Item key={item.oid} extra={<img width={272} alt="logo" src={item.imgs} />}>
+        <List.Item
+          key={item.oid}
+          extra={
+            <img width={272} alt="logo" src={item.imgs} />
+          }
+        >
           <List.Item.Meta
-            avatar={<Avatar style={{ lineHeight: '32px' }} size={40} icon={<UserOutlined />} />}
+            avatar={
+              <Avatar
+                style={{ lineHeight: '32px' }}
+                size={100}
+                icon={
+                  <img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.zhimg.com%2Fv2-d83c52d80123231303496578c6a6802c_r.jpg&refer=http%3A%2F%2Fpic1.zhimg.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1670250913&t=8db3d87449bbe4bbeeea8d63032bb247" />
+                }
+                shape="square"
+              />
+            }
             title={<span>{item.realName}</span>}
             description={'这个人很懒，什么都没有留下'}
           />
           {/* 详细信息 */}
           <Descriptions bordered column={1}>
-            <Descriptions.Item label="订单编号">{item.oid}</Descriptions.Item>
-            <Descriptions.Item label="购买商品">{item.gName}</Descriptions.Item>
-            <Descriptions.Item label="收件人">{item.realName}</Descriptions.Item>
-            <Descriptions.Item label="电话">{item.tel}</Descriptions.Item>
-            <Descriptions.Item label="订单时间">{item.oTime}</Descriptions.Item>
-            <Descriptions.Item label="地址">{item.address}</Descriptions.Item>
-            <Descriptions.Item label="价格">￥{item.price}</Descriptions.Item>
+            <Descriptions.Item label="订单编号">
+              {item.oid}
+            </Descriptions.Item>
+            <Descriptions.Item label="购买商品">
+              {item.gName}
+            </Descriptions.Item>
+            <Descriptions.Item label="收件人">
+              {item.realName}
+            </Descriptions.Item>
+            <Descriptions.Item label="电话">
+              {item.tel}
+            </Descriptions.Item>
+            <Descriptions.Item label="订单时间">
+              {item.oTime}
+            </Descriptions.Item>
+            <Descriptions.Item label="地址">
+              {item.address}
+            </Descriptions.Item>
+            <Descriptions.Item label="价格">
+              ￥{item.price}
+            </Descriptions.Item>
             <Descriptions.Item label="是否完成">
               {item.isFinish ? (
                 <Tag color="blue">完成</Tag>
@@ -79,7 +118,13 @@ const App = ({ user, changeLengh }: any) => {
                   <Button
                     type="primary"
                     danger
-                    onClick={() => payment(item.price, item.oid, item.gid)}
+                    onClick={() =>
+                      payment(
+                        item.price,
+                        item.oid,
+                        item.gid
+                      )
+                    }
                   >
                     支付
                   </Button>

@@ -14,20 +14,24 @@ export default function Header({
 
       <div className="absolute top-6 right-6">
         <span className="text-white mr-3">
-          {isAuth ? (
-            <Button
-              type="primary"
-              onClick={() => navigate('/admin')}
-            >
-              管理员
-            </Button>
+          {title !== '登录' || title !== '注册' ? (
+            isAuth ? (
+              <Button
+                type="primary"
+                onClick={() => navigate('/admin')}
+              >
+                管理员
+              </Button>
+            ) : (
+              <Button
+                type="primary"
+                onClick={() => navigate('/personal')}
+              >
+                我的
+              </Button>
+            )
           ) : (
-            <Button
-              type="primary"
-              onClick={() => navigate('/personal')}
-            >
-              我的
-            </Button>
+            ''
           )}
         </span>
         <Space size={'middle'}>
