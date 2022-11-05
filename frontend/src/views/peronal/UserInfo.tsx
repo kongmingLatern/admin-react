@@ -23,10 +23,17 @@ export default function UserInfo({ user, length }: any) {
           {/* 头像 */}
           <Space direction="vertical">
             <Avatar name={user.realName} length={length} />
-            <p className="text-gray-300 ">这个人很懒，什么都没有留下</p>
+            <p className="text-gray-300 ">
+              这个人很懒，什么都没有留下
+            </p>
             <Space>
               <span>余额：￥{user.pullet}</span>
-              <Button type="ghost" danger onClick={() => addMoney()} className="bg-white">
+              <Button
+                type="ghost"
+                danger
+                onClick={() => addMoney()}
+                className="bg-white"
+              >
                 充值
               </Button>
             </Space>
